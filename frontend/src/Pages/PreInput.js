@@ -33,27 +33,27 @@ const PreInput = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
   
-    // Validate all fields are not empty
+    
     if (value.trim() === "") {
       setErrors(prevErrors => ({
         ...prevErrors,
         [name]: "Field cannot be empty!",
       }));
-      // Clear the value of the input field
+      
       setFormData(prevFormData => ({
         ...prevFormData,
         [name]: "",
       }));
       return;
     } else {
-      // Clear error message if the field is not empty
+      
       setErrors(prevErrors => ({
         ...prevErrors,
         [name]: "",
       }));
     }
   
-    // Validate batting and bowling team names are not the same
+    
     if ((name === "batting_team" && value === formData.bowling_team) || 
         (name === "bowling_team" && value === formData.batting_team)) {
       setErrors(prevErrors => ({
@@ -62,14 +62,14 @@ const PreInput = () => {
       }));
       return;
     } else {
-      // Clear error message if the teams are different
+      
       setErrors(prevErrors => ({
         ...prevErrors,
         [name]: "",
       }));
     }
   
-    // Validation functions for each field
+    
     const validators = {
       target: (value) => {
         if (!/^\d+$/.test(value) || parseInt(value, 10) < 0) {
@@ -98,21 +98,21 @@ const PreInput = () => {
       default: () => "",
     };
   
-    // Apply validation function for the field, or use default function if not found
+    
     const validator = validators[name] || validators.default;
   
-    // Validate the field value
+    
     const errorMessage = validator(value);
   
-    // Set error message for the field
+    
     setErrors(prevErrors => ({
       ...prevErrors,
       [name]: errorMessage,
     }));
   
-    // If validation fails, return
+    
     if (errorMessage) {
-      // Clear the value of the input field
+      
       setFormData(prevFormData => ({
         ...prevFormData,
         [name]: "",
@@ -120,7 +120,7 @@ const PreInput = () => {
       return;
     }
   
-    // Update form data if validation passes
+    
     setFormData(prevFormData => ({
       ...prevFormData,
       [name]: value,
