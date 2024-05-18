@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRouter);
 
-mongoose.connect('mongodb://127.0.0.1:27017/authentication')
+mongoose.connect('mongodb+srv://thimiraakalanka13:12345@newcluster.dbwgwso.mongodb.net/authentication')
 .then(()=> console.log('connected to mongodb'))
 .catch((error) => console.error('failed to connected mongodb:',error));
 
